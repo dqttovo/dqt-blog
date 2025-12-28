@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dqt's blog</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- 汉堡菜单的JavaScript -->
+<script>
+    // 等待页面完全加载后执行
+    document.addEventListener('DOMContentLoaded', function() {
+        // 获取元素
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        
+        // 如果元素存在（防止出错）
+        if (hamburger && navMenu) {
+            // 点击汉堡按钮时
+            hamburger.addEventListener('click', function() {
+                // 切换菜单的激活状态
+                navMenu.classList.toggle('active');
+                
+                // 切换汉堡图标：三条杠 ↔ 关闭符号
+                const icon = hamburger.querySelector('i');
+                if (navMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                    hamburger.style.color = '#ff98ba'; // 激活时变色
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    hamburger.style.color = '#3a1c5c'; // 恢复原色
+                }
+            });
+            
+            // 点击菜单项后关闭菜单
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    // 关闭菜单
+                    navMenu.classList.remove('active');
+                    
+                    // 恢复汉堡图标
+                    const icon = hamburger.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    hamburger.style.color = '#3a1c5c';
+                });
+            });
+            
+            // 点击菜单外部关闭菜单（可选）
+            document.addEventListener('click', function(event) {
+                const isClickInsideMenu = navMenu.contains(event.target);
+                const isClickOnHamburger = hamburger.contains(event.target);
+                
+                if (!isClickInsideMenu && !isClickOnHamburger && navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    const icon = hamburger.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    hamburger.style.color = '#3a1c5c';
+                }
+            });
+            
+            // 窗口大小改变时调整（防止从手机切回电脑时菜单状态不对）
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    // 如果是大屏幕，确保菜单是正常状态
+                    navMenu.classList.remove('active');
+                    const icon = hamburger.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    hamburger.style.color = '#3a1c5c';
+                }
+            });
+            // 滚动时关闭菜单
+            window.addEventListener('scroll', function() {
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    const icon = hamburger.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    hamburger.style.color = '#3a1c5c';
+                }
+            });
+        }
+    });
+</script>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <nav>
+            <ul class="nav-logo">
+                <li>
+                    <a href="#" class="logo">DQTT🐰</a>
+                </li>
+            </ul>
+            <button class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#item">个人项目</a></li>
+                <li><a href="#contribution">开源贡献</a></li>
+                <li><a href="#timeline">时间轴</a></li>
+                <li><a href="#stack">技术栈</a></li>
+                <li><a href="#contact">联系我</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 主要内容区域 -->
+     <main>
+        <section class="intro-section" id="homepage">
+            <div class="intro-content">
+                <!-- 头像 -->
+                <div class="avatar-circle">
+                    <img src="./img/dqt.jpg" alt="NotFound" id="avatar">
+                </div>
+                
+                <!-- 简介 -->
+                <div class="intro-text">
+                    <h1 class="intro-title">Hello, 我是dqt</h1>
+                    <p class="intro-subtitle">前端开发者 | 技术爱好者 | 终身学习者</p>
+                    <div class="intro-description">
+                        <p>你好！我是一名热爱编程的前端开发者，专注于构建美观、易用的Web应用。</p>
+                        <p>喜欢探索新技术，热爱开源文化，乐于分享知识和经验。</p>
+                        <p>目前正在深入学习HTML/CSS/JavaScript等前端技术，希望通过学习不断进步。</p>
+                        <p>tel: 13765815731</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 个人项目区域 -->
+        <section class="section" id="item">
+            <h1 class="project-title">个人项目</h1>
+            <div class="card-container">
+                <div class="item-card">
+                    <div class="card-image">
+                        <img src="./img/flower.jpg" alt="flower">
+                    </div>
+                    <div class="card-text">
+                        <h2>花间舞</h2>
+                        <p>好看</p>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="card-image">
+                        <img src="./img/orange.jpg" alt="orange">
+                    </div>
+                    <div class="card-text">
+                        <h2>蜜橘之夏</h2>
+                        <p>这个也好看</p>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="card-image">
+                        <img src="./img/snow.jpg" alt="snow">
+                    </div>
+                    <div class="card-text">
+                        <h2>祈雪灵祝</h2>
+                        <p>神来的</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 开源贡献区域 -->
+        <section class="section" id="contribution">
+            <h1 class="project-title">开源贡献</h1>
+            <div class="card-container">
+                <div class="contribution-card"></div>
+                <div class="contribution-card"></div>
+                <div class="contribution-card"></div>
+            </div>
+        </section>
+
+        <!-- 时间轴区域 -->
+        <section class="section" id="timeline">
+            <h1 class="project-title">经历时间轴</h1>
+            <div class="timeline-container">
+                <ul class="timeline">
+                    <li class="timeline-item">
+                        <div class="timeline-title">2018年1月29日</div>
+                        <div class="name">
+                            <p>花间舞</p>
+                        </div>
+                        <div class="timeline-description">
+                            <p>整体服饰以蓝紫色为主，衣服上有花边装饰，头发为淡蓝色，随风飘动。其设计亮点在于油纸伞变花的创意，技能特效将枫叶变为花瓣，每次抛出的飞镖都带有翩翩飞舞的花瓣，命中对手时还会有花瓣雨效果。</p>
+                        </div>
+                    </li>
+                    <li class="timeline-item">
+                        <div class="timeline-title">2018年7月20日</div>
+                        <div class="name">
+                            <p>蜜橘之夏</p>
+                        </div>
+                        <div class="timeline-description">
+                            <p>设计上采用淡紫色单麻花辫搭配淡紫色和淡黄色撞色的泳衣，手持橘子样式的遮阳伞，手里还拿着大冰淇淋，充满夏天的气息。特效围绕橙汁、橘子切片、冰棍等元素进行设计，技能释放时会有橙色的果汁特效，给人一种清凉的感觉。</p>
+                            <p>标签：浪一夏限定</p>
+                        </div>
+                    </li>
+                    <li class="timeline-item">
+                        <div class="timeline-title">2019年9月17日</div>
+                        <div class="name">
+                            <p>无限星赏官</p>
+                        </div>
+                        <div class="timeline-description">
+                            <p>是无限王者团发起人皮肤。设计上采用类似于女团打歌服的造型，时尚又简约，兔耳与发型相结合，伞柄像荧光棒。技能特效采用 “闪闪发光的水晶体” 作为核心元素，技能释放时会有蓝色和粉色的光效，充满科技感和时尚感。</p>
+                            <p>标签：史诗</p>
+                        </div>
+                    </li>
+                    <li class="timeline-item">
+                        <div class="timeline-title">2021年2月11日</div>
+                        <div class="name">
+                            <p>祈雪灵祝</p>
+                        </div>
+                        <div class="timeline-description">
+                            <p>属于天文志系列。该皮肤大面积采用白色，辅以金色和红色点缀，斗篷与修身束腰搭配，手中的鹤伞代表吉祥寓意。技能特效以雪的白色为基础，点缀红色的力量符石，被动为泛着霞红的雪花，释放技能时会有雪花飘落，回城时则是瑞雪降临、万物新生的场景。</p>
+                            <p>标签：牛年限定</p>
+                        </div>
+                    </li>
+                    <li class="timeline-item">
+                        <div class="timeline-title">2022年3月15日</div>
+                        <div class="name">
+                            <p>玉兔公主</p>
+                        </div>
+                        <div class="timeline-description">
+                            <p>是 86 版《西游记》正版授权皮肤。该皮肤高度还原了剧中玉兔精的形象，身穿明橙色短衣襟和宽松束脚裤，搭配黄色绢花斜帔、百褶裙衣，头戴金纱花冠，眉间有朱红吉祥痣。武器伞面设计为绣球样式。技能特效以电视剧中玉兔公主形象为原点，被动标记用兔子的三种状态和吊坠形式呈现，还融入了《天竺少女》的经典音乐。</p>
+                            <p>标签：西游记86版正版授权</p>
+                        </div>
+                    </li>
+                    <li class="timeline-item">
+                        <div class="timeline-title">2023年4月22日</div>
+                        <div class="name">
+                            <p>记忆之芯</p>
+                        </div>
+                        <div class="timeline-description">
+                            <p>整体为机甲风格，以银色为主色调。服装为胶质与金属包裹的感受，点缀发光小部件，耳朵呈现出晶体状的科技材质。特效最大的亮点在于伞的多种变化，技能释放时会有科技感十足的光效和机械音效。</p>
+                            <p>标签：传说</p>
+                        </div>
+                    </li>
+                    <li class="timeline-item">
+                        <div class="timeline-title">2024年8月2日</div>
+                        <div class="name">
+                            <p>离恨烟</p>
+                        </div>
+                        <div class="timeline-description">
+                            <p>具有浓郁的水墨风格。公孙离长发盘簪，普通攻击会释放银色钗子，伴有花瓣飘落和水墨拖尾特效。闪光海报展现出古典仙侠意境，呈现出超凡侠女的形象。</p>
+                            <p>标签：无双限定</p>
+                        </div>
+                    </li>
+                    <li class="timeline-item">
+                        <div class="timeline-title">2025年4月3日</div>
+                        <div class="name">
+                            <p>云诺千山</p>
+                        </div>
+                        <div class="timeline-description">
+                            <p>整体色彩以金色和青绿为主，搭配云纹灵鱼作为点缀。一技能释放时，伞上有水库主题，上方停留着两条金龙。二技能伞旋转会显化出琼楼玉宇的虚影，大招则有蛟龙出水的气势，特效十分炫酷。</p>
+                            <p>标签：FMVP</p>
+                        </div>
+                    </li>
+                    <li class="timeline-item">
+                        <div class="timeline-title">2025年8月28日</div>
+                        <div class="name">
+                            <p>涂山容容</p>
+                        </div>
+                        <div class="timeline-description">
+                            <p>是王者荣耀与《狐妖小红娘》联动的限定皮肤，公孙离化身涂山二当家涂山容容。皮肤使用黄绿蓝三色搭配，绿发翩然，腰间佩戴标志性算盘，武器以苦情树花枝打造伞架，伞面有绿色小狐围绕花枝奔跑。技能特效以绿色和粉色为主，融入算盘、苦情树种、千丝网等元素。</p>
+                            <p>标签：狐妖小红娘</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 技术栈区域 -->
+        <section class="section" id="stack">
+            <h1 class="project-title">技术栈</h1>
+            <div class="stack-container">
+                <div class="stack-card">
+                    <h2 class="title"> 
+                        前端开发
+                    </h2>
+                    <div class="stack-items">
+                        <span class="stack-item">
+                            <i class="fab fa-html5"></i>
+                            HTML5
+                        </span>
+                        <span class="stack-item">
+                            <i class="fab fa-css3"></i>
+                            CSS3
+                        </span>
+                        <span class="stack-item">
+                            <i class="fab fa-js"></i>
+                            ES6
+                        </span>
+                        <span class="stack-item">
+                            <i class="fab fa-react"></i>
+                            React
+                        </span>
+                        <span class="stack-item">
+                            <i class="fab fa-vuejs"></i>
+                            Vue
+                        </span>
+                    </div>
+                </div>
+                <div class="stack-card">
+                    <h2 class="title">
+                        多语言开发
+                    </h2>
+                    <div class="stack-items">
+                        <span class="stack-item">
+                            <i class="fab fa-c"></i>
+                            C/C++
+                        </span>
+                        <span class="stack-item">
+                            <i class="fab fa-python"></i>
+                            Python
+                        </span>
+                    </div>
+                </div>
+                <div class="stack-card">
+                    <h2 class="title">
+                        数据库
+                    </h2>
+                    <div class="stack-items">
+                        <span class="stack-item">
+                            <i class="fas fa-database"></i>
+                            MySQL
+                        </span>
+                        <span class="stack-item">
+                            <i class="fas fa-server"></i>
+                            PostgreSQL
+                        </span>
+                    </div>
+                </div>
+                <div class="stack-card">
+                    <h2 class="title">
+                        软件与工具
+                    </h2>
+                    <div class="stack-items">
+                        <span class="stack-item">
+                            <i class="fab fa-linux"></i>
+                            Linux
+                        </span>
+                        <span class="stack-item">
+                            <i class="fab fa-git-alt"></i>
+                            Git
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 联系我区域 -->
+        <section class="contact-section" id="contact">
+            <div class="contact-card">
+                <h1 class="contact-title">联系我</h1>
+                <div class="contact-container">
+                    <div class="contact-list">
+                        <!-- 邮箱 -->
+                        <div class="contact-item">
+                            <a href="mailto:3076782104@qq.com" target="_blank" class="contact-link">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h3>邮箱</h3>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- github -->
+                        <div class="contact-item">
+                            <a href="https://github.com" target="_blank" class="contact-link">
+                                <div class="contact-icon">
+                                    <i class="fab fa-github"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h3>GitHub</h3>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- 微信 -->
+                        <div class="contact-item">
+                            <a href="#" class="contact-link">
+                                <div class="contact-icon">
+                                    <i class="fab fa-weixin"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h3>微信</h3>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+     </main>
+
+     <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <p>&copy 2023-2027 DQTT | 个人主页</p>
+            </div>
+        </div>
+     </footer>
+</body>
+</html>
